@@ -14,12 +14,15 @@ import (
 func main() {
 	endpoint := "http://fgo.vn/tai-hinh-anh.html"
 	fileDir := "download/"
+	prefix := "E"
+	start := 40000
+	end := 100
 
 	// Clean up download folder
 	Cleanup(fileDir)
 
-	for i := 1; i <= 10; i++ {
-		fileName := fmt.Sprintf("D400%02d", i)
+	for i := start; i <= start+end; i++ {
+		fileName := fmt.Sprintf("%s%05d", prefix, i)
 		fmt.Print("Fetching " + fileName)
 		if body, ok := FetchFile(endpoint, fileName); ok {
 			// Write byte to file
